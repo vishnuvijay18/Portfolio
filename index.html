@@ -226,6 +226,7 @@
       transition: 0.3s ease;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
     }
 
@@ -554,6 +555,9 @@
 
       .hero {
         text-align: center;
+        gap: 30px;
+        min-height: auto;
+        padding-top: 30px;
       }
 
       .hero p {
@@ -566,44 +570,211 @@
       }
 
       .hero-image-wrap {
-        margin-top: 15px;
+        margin-top: 10px;
+      }
+
+      .hero-card {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .about-box,
+      .skill-box,
+      .achievement-card,
+      .language-card,
+      .contact-card,
+      .exp-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: sticky;
+        top: 0;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+      }
+
+      .logo {
+        font-size: 1.15rem;
+        text-align: center;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+
+      section {
+        padding: 60px 16px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .eyebrow {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+      }
+
+      .hero-image {
+        width: 220px;
+        height: 220px;
+      }
+
+      .hero-image-wrap::before {
+        width: 230px;
+        height: 230px;
+      }
+
+      .hero-card {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none;
+        margin-top: 16px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item {
+        padding-left: 36px;
+      }
+
+      .timeline-item::before {
+        left: 1px;
+        width: 16px;
+        height: 16px;
+      }
+
+      .exp-card h3 {
+        font-size: 1.05rem;
+      }
+
+      .exp-role {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .exp-card ul {
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chips {
+        gap: 10px;
+      }
+
+      .chip {
+        font-size: 0.82rem;
+        padding: 8px 12px;
       }
 
       .scroll-indicator {
         display: none;
       }
+
+      footer {
+        padding: 24px 16px 34px;
+        font-size: 0.9rem;
+      }
     }
 
-    @media (max-width: 768px) {
-      .nav {
-        flex-direction: column;
-        gap: 14px;
-      }
-
+    @media (max-width: 480px) {
       .nav-links {
-        justify-content: center;
-        gap: 16px;
+        gap: 10px;
       }
 
-      section {
-        padding: 72px 18px;
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        gap: 22px;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
       }
 
       .hero-image {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
       }
 
       .hero-image-wrap::before {
-        width: 260px;
-        height: 260px;
+        width: 190px;
+        height: 190px;
       }
 
-      .hero-card {
-        bottom: 0;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
+      .btn {
+        width: 100%;
+        padding: 13px 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .about-box,
+      .skill-box,
+      .achievement-card,
+      .language-card,
+      .contact-card,
+      .exp-card,
+      .stat {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .section-title {
+        font-size: 1.55rem;
+      }
+
+      .reveal-line {
+        width: 65px;
+        margin-bottom: 18px;
       }
     }
   </style>
@@ -729,7 +900,7 @@
       <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
         <div class="glass-card exp-card">
           <h3>IQ Education Consultants</h3>
-          <span class="exp-role">Student Services Coordinator | Dubai, UAE | May 2022 - August 2022</span>
+          <span class="exp-role">Student Services Coordinator | Dubai, UAE | May 2022 - August 2024</span>
           <ul>
             <li>Introduced and educated parents and students about the company and its services.</li>
             <li>Scheduled appointments for the right counselors based on student preferences, country, and course options.</li>
@@ -892,14 +1063,6 @@
       duration: 1000,
       once: true,
       offset: 100
-    });
-
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      });
     });
   </script>
 
