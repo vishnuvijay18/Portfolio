@@ -1,172 +1,907 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vishnu Vijay | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
   <style>
-    body {font-family: 'Poppins', sans-serif; margin:0; background:#f9f9f9; color:#333;}
-    header {display:flex; justify-content:space-between; padding:20px 50px; position:sticky; top:0; background:white; box-shadow:0 2px 10px rgba(0,0,0,0.05);} 
-    header a {text-decoration:none; color:#333; margin:0 10px;}
-    .hero {display:flex; align-items:center; justify-content:space-between; padding:60px 50px;}
-    .hero img {width:250px; border-radius:50%; box-shadow:0 10px 30px rgba(0,0,0,0.1);} 
-    section {padding:60px 50px;}
-    .card {background:white; padding:20px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.05); margin-bottom:20px;}
-    footer {text-align:center; padding:20px; background:#eee;}
+    :root {
+      --bg: #08111f;
+      --bg-secondary: #0d1728;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f5f7fb;
+      --muted: #b8c2d6;
+      --accent: #4fd1ff;
+      --accent-2: #7b61ff;
+      --accent-3: #00e0b8;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(79, 209, 255, 0.18), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(123, 97, 255, 0.18), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(0, 224, 184, 0.12), transparent 22%),
+        linear-gradient(135deg, #07111d, #0a1423 45%, #0b1628 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: 0;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .orb1 {
+      width: 250px;
+      height: 250px;
+      top: 8%;
+      left: -50px;
+      background: rgba(79, 209, 255, 0.22);
+    }
+
+    .orb2 {
+      width: 240px;
+      height: 240px;
+      top: 40%;
+      right: -60px;
+      background: rgba(123, 97, 255, 0.2);
+      animation-duration: 13s;
+    }
+
+    .orb3 {
+      width: 220px;
+      height: 220px;
+      bottom: 5%;
+      left: 35%;
+      background: rgba(0, 224, 184, 0.14);
+      animation-duration: 15s;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translateY(0) translateX(0) scale(1); }
+      to { transform: translateY(25px) translateX(20px) scale(1.08); }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 17, 31, 0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 90px 24px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 40px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(79,209,255,0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, var(--accent), #a79bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #08111f;
+      box-shadow: 0 10px 35px rgba(79,209,255,0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(79,209,255,0.32);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-2px);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-wrap::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(79,209,255,0.35), rgba(123,97,255,0.28));
+      filter: blur(10px);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 0.65; }
+    }
+
+    .hero-image {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+
+    .hero-card {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      z-index: 3;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      animation: floatMini 4s ease-in-out infinite;
+    }
+
+    @keyframes floatMini {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-card strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .hero-card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.9;
+      margin-bottom: 36px;
+    }
+
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+    }
+
+    .about-box {
+      padding: 30px;
+    }
+
+    .stats-box {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 24px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--accent), var(--accent-2), transparent);
+      opacity: 0.45;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 28px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 25px rgba(79,209,255,0.35);
+    }
+
+    .exp-card {
+      padding: 28px;
+      transition: transform 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .exp-card:hover,
+    .skill-box:hover,
+    .language-card:hover,
+    .achievement-card:hover,
+    .contact-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(79,209,255,0.3);
+      box-shadow: 0 24px 55px rgba(0,0,0,0.4);
+    }
+
+    .exp-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .exp-role {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .exp-card ul {
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .exp-card li {
+      margin-bottom: 10px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .skill-box {
+      padding: 28px;
+      transition: 0.35s ease;
+    }
+
+    .skill-box h3 {
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      color: #dfe8f6;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s ease;
+    }
+
+    .chip:hover {
+      transform: scale(1.04);
+      background: rgba(79,209,255,0.12);
+      border-color: rgba(79,209,255,0.28);
+    }
+
+    .achievement-card,
+    .language-card,
+    .contact-card {
+      padding: 28px;
+      transition: 0.35s ease;
+    }
+
+    .achievement-card h3,
+    .language-card h3,
+    .contact-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .language-list,
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contact-list a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 30px 20px 50px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 30px;
+    }
+
+    .reveal-line {
+      width: 90px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      margin-bottom: 26px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      opacity: 0.8;
+      letter-spacing: 2px;
+      animation: bounceText 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceText {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 992px) {
+      .hero,
+      .about-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image-wrap {
+        margin-top: 15px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 16px;
+      }
+
+      section {
+        padding: 72px 18px;
+      }
+
+      .hero-image {
+        width: 250px;
+        height: 250px;
+      }
+
+      .hero-image-wrap::before {
+        width: 260px;
+        height: 260px;
+      }
+
+      .hero-card {
+        bottom: 0;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h2>Vishnu Vijay</h2>
-  <div>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </div>
-</header>
+  <div class="floating-orb orb1"></div>
+  <div class="floating-orb orb2"></div>
+  <div class="floating-orb orb3"></div>
 
-<div class="hero">
-  <div data-aos="fade-right">
-    <h1>Customer Experience & Onboarding Specialist</h1>
-    <p>Delivering exceptional fintech customer journeys and building lasting client relationships.</p>
-  </div>
-  <img src="your-photo.jpg" alt="Vishnu Vijay" data-aos="fade-left">
-</div>
+  <header>
+    <div class="nav">
+      <div class="logo">Vishnu<span>Vijay</span></div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#languages">Languages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<section id="about" data-aos="fade-up">
-  <h2>About Me</h2>
-  <p>Customer Experience Specialist with 3+ years of fintech experience delivering high-quality support across chat, phone and email channels. Proven expertise in complaint resolution, B2B onboarding, escalation management and KPI-driven service excellence.</p>
-</section>
+  <section class="hero">
+    <div data-aos="fade-right" data-aos-duration="1200">
+      <span class="eyebrow">Customer Experience • Fintech • Onboarding</span>
+      <h1>
+        Hi, I’m <span class="gradient-text">Vishnu Vijay</span>
+      </h1>
+      <p>
+        Senior Customer Experience & Onboarding Specialist with strong experience in fintech,
+        customer support, escalation handling, B2B onboarding, and service excellence. I help
+        businesses create smooth customer journeys and build lasting client trust.
+      </p>
 
-<section id="experience">
-  <h2 data-aos="fade-up">Experience</h2>
-  <div class="card" data-aos="fade-right">
-    <h3>Hubpay Limited</h3>
-    <p>Senior Customer Experience & Onboarding Specialist (Sep 2022 - Present)</p>
-    <ul>
-      <li>Deliver seamless omnichannel customer support for Retail and B2B clients (chat, email, phone, social media) ensuring
-high-quality interactions and SLA adherence across all touchpoints</li>
-      <li>Own end-to-end customer issue resolution, demonstrating a strong problem-solving mindset while maintaining high
-CSAT and 95%+ quality performance</li>
-      <li>Manage and resolve complex escalations, coordinating with Compliance, Risk, Payments, and Product teams to ensure
-timely and transparent closure</li>
-      <li>Monitor and respond to customer feedback across Google Play Store reviews and social media platforms, safeguarding
-brand reputation and improving public customer perception</li>
-      <li>Utilize CRM systems and digital tools to document cases, track response time metrics, manage follow-ups, and ensure
-audit-ready records</li>
-      <li>Meet and exceed KPIs related to response time, resolution quality, customer engagement, and overall service
-performance</li>
-      <li>Manage end-to-end onboarding of B2B clients, ensuring complete documentation, compliance validation, and smooth
-account activation</li>
-      <li>Support customers with transaction-related queries including FX conversions, settlement timelines, payment tracking,
-and refund processes</li>
-      <li>Conduct consultative conversations and outbound engagement initiatives to improve product adoption and retention</li>
-      <li>Handle high inbound service volumes efficiently while maintaining professionalism, clarity, and customer empathy</li>
-      <li>Collaborate with internal stakeholders to ensure customer complaints, disputes, and sensitive cases are managed in
-line with company policy and risk framework</li>
-    </ul>
-  </div>
-  <div class="card" data-aos="fade-right">
-  <h3>IQ Education Consultants</h3>
-  <p>Student Services Coordinator | Dubai, UAE (May 2022 – August 2022)</p>
-  <ul>
-    <li>Introduced and educated parents and students about company services</li>
-    <li>Scheduled appointments based on student preferences (country & course)</li>
-    <li>Organized and attended career fairs and university delegate events</li>
-    <li>Managed daily schedules for the manager</li>
-    <li>Handled follow-ups and sales through telecalling</li>
-  </ul>
-</div>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#experience" class="btn btn-secondary">View Experience</a>
+      </div>
+    </div>
 
-<div class="card" data-aos="fade-left">
-  <h3>Conduent</h3>
-  <p>Transaction Processor Associate | Kochi, India (Nov 2018 – Jan 2022)</p>
-  <ul>
-    <li>Processed transactions with high accuracy and efficiency</li>
-    <li>Maintained compliance with company policies and procedures</li>
-    <li>Handled data verification and quality checks</li>
-  </ul>
-</div>
+    <div class="hero-image-wrap" data-aos="zoom-in" data-aos-duration="1400">
+      <img src="your-photo.jpg" alt="Vishnu Vijay" class="hero-image">
+      <div class="hero-card">
+        <strong>3+ Years in Fintech</strong>
+        <span>Customer Experience & Onboarding</span>
+      </div>
+    </div>
 
-<div class="card" data-aos="fade-right">
-  <h3>Andaman Tour Travel by Garlic Holidays</h3>
-  <p>Business Development Executive | Kochi, India (Nov 2017 – Nov 2018)</p>
-  <ul>
-    <li>Managed client relationships and travel bookings</li>
-    <li>Generated leads and converted them into sales</li>
-    <li>Provided customized travel solutions</li>
-  </ul>
-</div>
+    <div class="scroll-indicator">SCROLL</div>
+  </section>
 
-<div class="card" data-aos="fade-left">
-  <h3>Azure Laboratories Pvt. Ltd.</h3>
-  <p>Online Customer Support | Kochi, India (Dec 2016 – Apr 2017)</p>
-  <ul>
-    <li>Handled online customer queries and support requests</li>
-    <li>Ensured timely issue resolution and customer satisfaction</li>
-    <li>Maintained communication records and follow-ups</li>
-  </ul>
-</div>
-</section>
+  <section id="about">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">About Me</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Customer Experience Specialist with 3+ years of fintech experience delivering high-quality support
+      across chat, phone, email, and social media channels. Proven expertise in complaint resolution,
+      B2B onboarding, escalation management, service quality, and KPI-driven customer success.
+    </p>
 
-<section id="skills" data-aos="fade-up">
-  <h2>Skills</h2>
-  <ul>
-    <li>Customer Experience Management</li>
-    <li>Complaint & Escalation Handling</li>
-    <li>B2B Onboarding & KYC Compliance</li>
-    <li>Fintech & Payment Operations</li>
-    <li>Customer Retention & Churn Prevention</li>
-    <li>SLA & KPI Managemen</li>
-    <li>Problem Solving & Root Cause Analysis</li>
-    <li>CRM & Ticketing Systems (Zendesk, Ziwo & Salesforce)</li>
-    <li>Fintech Product Support</li>
-    <li> HNWI Client Relationship Management</li>
-    <li>Process Improvement</li>
-    <li>Performance Metrics & Reportin</li>
-  </ul>
-</section>
+    <div class="about-grid">
+      <div class="glass-card about-box" data-aos="fade-right">
+        <p style="color: var(--muted); line-height: 1.95;">
+          I specialize in delivering seamless customer journeys, managing complex service issues,
+          and ensuring smooth onboarding experiences for both retail and B2B clients. My strength
+          lies in combining empathy, operational efficiency, and business-focused problem-solving
+          to create better customer outcomes.
+          <br><br>
+          With hands-on experience in fintech support, transaction-related queries, KYC documentation,
+          complaint handling, CRM systems, and public feedback management, I bring a strong customer-first
+          mindset backed by performance and professionalism.
+        </p>
+      </div>
 
-<section id="achievements" data-aos="fade-up">
-  <h2>Achievements</h2>
-  <div class="card">
-    <h3>🏆 Employee of the Month</h3>
-    <p>Recognized in August 2023 for handling the highest service volumes while maintaining exceptional service quality and customer satisfaction.</p>
-  </div>
-</section>
+      <div class="stats-box">
+        <div class="glass-card stat" data-aos="fade-up">
+          <h3>3+ Years</h3>
+          <p>Fintech Customer Experience</p>
+        </div>
+        <div class="glass-card stat" data-aos="fade-up" data-aos-delay="100">
+          <h3>95%+</h3>
+          <p>Quality Performance</p>
+        </div>
+        <div class="glass-card stat" data-aos="fade-up" data-aos-delay="200">
+          <h3>Multi-Channel</h3>
+          <p>Chat, Email, Phone & Social</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="languages" data-aos="fade-up">
-  <h2>Languages</h2>
-  <div class="card">
-    <ul>
-      <li>English – Fluent</li>
-      <li>Malayalam – Native</li>
-      <li>Hindi – Fluent</li>
-      <li>Kannada – Intermediate</li>
-      <li>Tamil – Intermediate</li>
-    </ul>
-  </div>
-</section>
-      
-<section id="contact" data-aos="fade-up">
-  <h2>Contact</h2>
-  <p>Email: vijayvishnu60@gmail.com</p>
-  <p>Phone: +971545603477</p>
-  <p><a href="https://www.linkedin.com/in/vishnu-vijay-829757238">LinkedIn Profile</a></p>
-</section>
+  <section id="experience">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Experience</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      My professional journey across fintech, education, operations, travel, and support roles.
+    </p>
 
-<footer>
-  <p>© 2026 Vishnu Vijay</p>
-</footer>
+    <div class="timeline">
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+      <div class="timeline-item" data-aos="fade-up">
+        <div class="glass-card exp-card">
+          <h3>Hubpay Limited</h3>
+          <span class="exp-role">Senior Customer Experience & Onboarding Specialist | Sep 2022 - Present</span>
+          <ul>
+            <li>Deliver seamless omnichannel customer support for Retail and B2B clients across chat, email, phone, and social media while ensuring SLA adherence.</li>
+            <li>Own end-to-end issue resolution with a strong problem-solving mindset while maintaining high CSAT and 95%+ quality performance.</li>
+            <li>Manage complex escalations by coordinating with Compliance, Risk, Payments, and Product teams for timely resolution.</li>
+            <li>Monitor and respond to customer feedback across Google Play Store reviews and social media to protect brand reputation.</li>
+            <li>Use CRM systems and digital tools to document cases, track response times, manage follow-ups, and maintain audit-ready records.</li>
+            <li>Meet and exceed KPIs related to response time, service quality, customer engagement, and support performance.</li>
+            <li>Handle end-to-end onboarding of B2B clients, including documentation checks, compliance validation, and account activation.</li>
+            <li>Support transaction-related queries such as FX conversions, settlement timelines, payment tracking, and refunds.</li>
+            <li>Conduct consultative conversations and outbound initiatives to improve product adoption and retention.</li>
+            <li>Handle high inbound support volumes while maintaining empathy, clarity, and professionalism.</li>
+            <li>Work closely with internal stakeholders to manage complaints, disputes, and sensitive cases in line with company policy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-card exp-card">
+          <h3>IQ Education Consultants</h3>
+          <span class="exp-role">Student Services Coordinator | Dubai, UAE | May 2022 - August 2022</span>
+          <ul>
+            <li>Introduced and educated parents and students about the company and its services.</li>
+            <li>Scheduled appointments for the right counselors based on student preferences, country, and course options.</li>
+            <li>Organized and attended career fairs and university delegate events.</li>
+            <li>Managed day-to-day schedules for the manager.</li>
+            <li>Handled follow-ups and sales through telecalling.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card exp-card">
+          <h3>Conduent</h3>
+          <span class="exp-role">Transaction Processor Associate | Kochi, India | Nov 2018 - Jan 2022</span>
+          <ul>
+            <li>Processed transactions with high accuracy and operational efficiency.</li>
+            <li>Maintained compliance with company policies and internal procedures.</li>
+            <li>Handled data verification and quality checks to ensure accuracy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-card exp-card">
+          <h3>Andaman Tour Travel by Garlic Holidays</h3>
+          <span class="exp-role">Business Development Executive | Kochi, India | Nov 2017 - Nov 2018</span>
+          <ul>
+            <li>Managed client relationships and travel bookings.</li>
+            <li>Generated leads and converted them into sales.</li>
+            <li>Provided customized travel solutions based on client requirements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="250">
+        <div class="glass-card exp-card">
+          <h3>Azure Laboratories Pvt. Ltd.</h3>
+          <span class="exp-role">Online Customer Support | Kochi, India | Dec 2016 - Apr 2017</span>
+          <ul>
+            <li>Handled online customer queries and support requests.</li>
+            <li>Ensured timely issue resolution and customer satisfaction.</li>
+            <li>Maintained communication records and follow-up activities.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Skills</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Core skills built across customer support, fintech operations, onboarding, and service excellence.
+    </p>
+
+    <div class="skills-grid">
+      <div class="glass-card skill-box" data-aos="fade-right">
+        <h3>Customer & Service Expertise</h3>
+        <div class="chips">
+          <span class="chip">Customer Experience Management</span>
+          <span class="chip">Complaint Handling</span>
+          <span class="chip">Escalation Management</span>
+          <span class="chip">Customer Retention</span>
+          <span class="chip">Churn Prevention</span>
+          <span class="chip">HNWI Client Relationship Management</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-box" data-aos="fade-left">
+        <h3>Fintech & Operations</h3>
+        <div class="chips">
+          <span class="chip">B2B Onboarding</span>
+          <span class="chip">KYC Compliance</span>
+          <span class="chip">Fintech Product Support</span>
+          <span class="chip">Payment Operations</span>
+          <span class="chip">SLA Management</span>
+          <span class="chip">KPI Management</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-box" data-aos="fade-right" data-aos-delay="100">
+        <h3>Tools & Systems</h3>
+        <div class="chips">
+          <span class="chip">Zendesk</span>
+          <span class="chip">Ziwo</span>
+          <span class="chip">Salesforce</span>
+          <span class="chip">CRM & Ticketing Systems</span>
+          <span class="chip">Performance Reporting</span>
+          <span class="chip">Case Documentation</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-box" data-aos="fade-left" data-aos-delay="100">
+        <h3>Problem Solving & Improvement</h3>
+        <div class="chips">
+          <span class="chip">Problem Solving</span>
+          <span class="chip">Root Cause Analysis</span>
+          <span class="chip">Process Improvement</span>
+          <span class="chip">Service Quality</span>
+          <span class="chip">Audit-Ready Record Keeping</span>
+          <span class="chip">Cross-Functional Coordination</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Achievements</h2>
+
+    <div class="glass-card achievement-card" data-aos="fade-up">
+      <h3>🏆 Employee of the Month</h3>
+      <p style="color: var(--muted); line-height: 1.9;">
+        Recognized in <strong style="color:#fff;">August 2023</strong> for handling the highest service volumes while
+        maintaining exceptional service quality and customer satisfaction.
+      </p>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Languages</h2>
+
+    <div class="glass-card language-card" data-aos="fade-up">
+      <div class="language-list">
+        <div><strong style="color:#fff;">English</strong> – Fluent</div>
+        <div><strong style="color:#fff;">Malayalam</strong> – Native</div>
+        <div><strong style="color:#fff;">Hindi</strong> – Fluent</div>
+        <div><strong style="color:#fff;">Kannada</strong> – Intermediate</div>
+        <div><strong style="color:#fff;">Tamil</strong> – Intermediate</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Contact</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Let’s connect for customer experience, onboarding, support, or fintech-related opportunities.
+    </p>
+
+    <div class="glass-card contact-card" data-aos="fade-up">
+      <h3>Contact Details</h3>
+      <div class="contact-list">
+        <div><strong style="color:#fff;">Email:</strong> <a href="mailto:vijayvishnu60@gmail.com">vijayvishnu60@gmail.com</a></div>
+        <div><strong style="color:#fff;">Phone:</strong> <a href="tel:+971545603477">+971545603477</a></div>
+        <div><strong style="color:#fff;">LinkedIn:</strong> <a href="https://www.linkedin.com/in/vishnu-vijay-829757238" target="_blank">linkedin.com/in/vishnu-vijay-829757238</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Vishnu Vijay. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
