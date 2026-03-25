@@ -411,7 +411,8 @@
     .skill-box:hover,
     .language-card:hover,
     .achievement-card:hover,
-    .contact-card:hover {
+    .contact-card:hover,
+    .project-card:hover {
       transform: translateY(-6px);
       border-color: rgba(79,209,255,0.3);
       box-shadow: 0 24px 55px rgba(0,0,0,0.4);
@@ -438,6 +439,72 @@
 
     .exp-card li {
       margin-bottom: 10px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      padding: 30px;
+      transition: 0.35s ease;
+    }
+
+    .project-tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #08111f;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      margin-bottom: 18px;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 22px;
+    }
+
+    .project-block {
+      margin-bottom: 22px;
+    }
+
+    .project-block h4 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .project-block p,
+    .project-block ul {
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .project-block ul {
+      padding-left: 18px;
+    }
+
+    .project-block li {
+      margin-bottom: 8px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
     }
 
     .skills-grid {
@@ -584,7 +651,8 @@
       .achievement-card,
       .language-card,
       .contact-card,
-      .exp-card {
+      .exp-card,
+      .project-card {
         padding: 22px;
       }
     }
@@ -679,7 +747,8 @@
         height: 16px;
       }
 
-      .exp-card h3 {
+      .exp-card h3,
+      .project-card h3 {
         font-size: 1.05rem;
       }
 
@@ -688,9 +757,12 @@
         line-height: 1.5;
       }
 
-      .exp-card ul {
+      .exp-card ul,
+      .project-desc,
+      .project-block p,
+      .project-block ul {
         font-size: 0.92rem;
-        line-height: 1.7;
+        line-height: 1.75;
       }
 
       .skills-grid {
@@ -763,6 +835,7 @@
       .language-card,
       .contact-card,
       .exp-card,
+      .project-card,
       .stat {
         padding: 18px;
         border-radius: 18px;
@@ -791,6 +864,7 @@
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#achievements">Achievements</a>
         <a href="#languages">Languages</a>
@@ -900,7 +974,7 @@
       <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
         <div class="glass-card exp-card">
           <h3>IQ Education Consultants</h3>
-          <span class="exp-role">Student Services Coordinator | Dubai, UAE | May 2022 - August 2024</span>
+          <span class="exp-role">Student Services Coordinator | Dubai, UAE | May 2022 - August 2022</span>
           <ul>
             <li>Introduced and educated parents and students about the company and its services.</li>
             <li>Scheduled appointments for the right counselors based on student preferences, country, and course options.</li>
@@ -947,6 +1021,61 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="reveal-line" data-aos="zoom-in"></div>
+    <h2 class="section-title" data-aos="fade-up">Projects</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      A showcase of practical solutions I built to improve support efficiency, productivity, and customer experience workflows.
+    </p>
+
+    <div class="projects-grid">
+      <div class="glass-card project-card" data-aos="fade-up">
+        <div class="project-tag">Standalone Tool</div>
+        <h3>AI Case Triage and Response System for Hubpay Support Agents</h3>
+        <p class="project-desc">
+          A browser-based internal support tool designed to help Hubpay agents handle customer emails faster and more effectively.
+          The tool analyzes manually pasted customer emails, identifies urgency, drafts responses, and suggests suitable macros
+          to improve agent productivity and reduce response time.
+        </p>
+
+        <div class="project-block">
+          <h4>What it does</h4>
+          <ul>
+            <li>Analyzes customer emails manually pasted by support agents</li>
+            <li>Classifies cases into priority levels from P1 to P4</li>
+            <li>Generates AI-assisted draft responses</li>
+            <li>Shows suggested macros for quicker handling</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <h4>How it works</h4>
+          <p>
+            Runs independently in a web browser. Agents paste customer emails manually into the tool and receive
+            instant AI-powered case analysis with response suggestions.
+          </p>
+        </div>
+
+        <div class="project-block">
+          <h4>Use case</h4>
+          <p>
+            Helps support agents become more productive, save time, and improve consistency by reducing manual effort
+            in analyzing cases and preparing customer replies.
+          </p>
+        </div>
+
+        <div class="project-tech">
+          <span class="chip">AI-Assisted Workflow</span>
+          <span class="chip">Case Classification</span>
+          <span class="chip">Draft Response Generation</span>
+          <span class="chip">Suggested Macros</span>
+          <span class="chip">Support Productivity</span>
+          <span class="chip">Browser-Based Tool</span>
+        </div>
+      </div>
     </div>
   </section>
 
