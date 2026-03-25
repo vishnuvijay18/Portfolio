@@ -114,6 +114,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
     }
 
     .logo {
@@ -121,6 +122,7 @@
       font-weight: 700;
       letter-spacing: 0.4px;
       color: #fff;
+      white-space: nowrap;
     }
 
     .logo span {
@@ -131,6 +133,8 @@
       display: flex;
       gap: 22px;
       flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav-links a {
@@ -161,6 +165,24 @@
       width: 100%;
     }
 
+    .nav-resume {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #08111f !important;
+      font-weight: 700 !important;
+      box-shadow: 0 10px 25px rgba(79,209,255,0.22);
+    }
+
+    .nav-resume::after {
+      display: none;
+    }
+
+    .nav-resume:hover {
+      transform: translateY(-2px);
+      color: #08111f !important;
+    }
+
     section {
       position: relative;
       z-index: 1;
@@ -188,6 +210,12 @@
       font-size: 0.9rem;
       margin-bottom: 22px;
       box-shadow: 0 0 20px rgba(79,209,255,0.08);
+      animation: shimmerPulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes shimmerPulse {
+      0%,100% { box-shadow: 0 0 20px rgba(79,209,255,0.08); }
+      50% { box-shadow: 0 0 30px rgba(123,97,255,0.16); }
     }
 
     .hero h1 {
@@ -450,6 +478,22 @@
     .project-card {
       padding: 30px;
       transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.06), transparent 80%);
+      transform: translateX(-100%);
+      transition: transform 0.8s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      transform: translateX(100%);
     }
 
     .project-tag {
@@ -869,6 +913,7 @@
         <a href="#achievements">Achievements</a>
         <a href="#languages">Languages</a>
         <a href="#contact">Contact</a>
+        <a href="Vishnu_Vijay_Resume.pdf" class="nav-resume" download>Resume</a>
       </nav>
     </div>
   </header>
@@ -888,6 +933,7 @@
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary">Get In Touch</a>
         <a href="#experience" class="btn btn-secondary">View Experience</a>
+        <a href="Vishnu_Vijay_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
       </div>
     </div>
 
@@ -1037,7 +1083,7 @@
         <h3>AI Case Triage and Response System for Hubpay Support Agents</h3>
         <p class="project-desc">
           A browser-based internal support tool designed to help Hubpay agents handle customer emails faster and more effectively.
-          The tool analyzes manually pasted customer emails, identifies urgency, drafts responses, and suggests suitable macros
+          The tool analyzes manually pasted customer emails, classifies priority, generates draft responses, and suggests suitable macros
           to improve agent productivity and reduce response time.
         </p>
 
@@ -1178,6 +1224,7 @@
         <div><strong style="color:#fff;">Email:</strong> <a href="mailto:vijayvishnu60@gmail.com">vijayvishnu60@gmail.com</a></div>
         <div><strong style="color:#fff;">Phone:</strong> <a href="tel:+971545603477">+971545603477</a></div>
         <div><strong style="color:#fff;">LinkedIn:</strong> <a href="https://www.linkedin.com/in/vishnu-vijay-829757238" target="_blank">linkedin.com/in/vishnu-vijay-829757238</a></div>
+        <div><strong style="color:#fff;">Resume:</strong> <a href="Vishnu_Vijay_Resume.pdf" download>Download Resume</a></div>
       </div>
     </div>
   </section>
